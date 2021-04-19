@@ -1,9 +1,23 @@
 var currentDay = moment().format("dddd, MMMM Do");
-var saveButton = document.querySelector('btn');
+var tasks = [];
 
 //Display current day on top of the planner
-$("#currentDay").text(currentDay);
-renderTextareaBackground();
+
+
+function setUpTasks() {
+    tasks = JSON.parse(localStorage.getItem("myTask")) || [];
+    console.log(tasks);
+    for (let i = 0; i < tasks.length; i++) {
+        let hour = tasks[i].hour;
+        let todo = tasks[i].todo;
+        $("[data-hour=" + hour + "]").siblings().filter("textarea").val(todo);
+    }
+}
+
+function setUp() {
+    $("#currentDay").text(currentDay);
+    renderTextareaBackground();
+}
 
 // Audit each time block to display past, current and future timeblocks
 
@@ -22,20 +36,40 @@ function renderTextareaBackground() {
     });
 }
 
-let tasks = [];
-
-$("button .btn").on('click', function (event) {
+$(".saveBtn").on('click', function (event) {
 
     event.preventDefault();
-    var plannedTask = $('#description')
-    .val()
-    .trim();
-    console.log(plannedTask);
-
-    tasks.push(plannedTask);
-    localStorage.setItem('myTaskList', JSON.stringify(tasks));
-
+    let id = parseInt($(this).data("hour"));
+    let plannedTask = $(this).siblings().filter('textarea').val();
+    let newTask = true;
+    for (var i = 0; i < tasks.length; i++) {
+        if (tasks[i].hour === id) {
+            newTask = false;
+            tasks[i].todo = plannedTask;
+        }
+    }
+    if (newTask) {
+        addTask(id, plannedTask);
+    }
+    //tasks.push(plannedTask);
+    localStorage.setItem('myTask', JSON.stringify(tasks));
 });
+
+function addTask(hr, input) {
+    let todo = {
+        hour: hr,
+        todo: input
+    }
+    tasks.push(todo);
+
+}
+
+$(document).ready(function () {
+    setUpTasks();
+    setUp();
+    setInterval(setUp, 1000);
+    setInterval(renderTextareaBackground, 60 * 1000);
+})
 
 
 
