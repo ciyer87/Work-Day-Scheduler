@@ -1,12 +1,13 @@
-var currentDay = moment().format("dddd, MMMM Do");
+//global variables declaration
+var currentDay = moment().format("dddd, MMMM Do, YYYY");
+var today = new Date();
+//var dayOfWeek = moment().format("dddd");
+var dayofWeek = "Thursday";
 var tasks = [];
 
-//Display current day on top of the planner
-
-
+// setup tasks in the scheduler, if there are existing tasks in the localstorage
 function setUpTasks() {
     tasks = JSON.parse(localStorage.getItem("myTask")) || [];
-    console.log(tasks);
     for (let i = 0; i < tasks.length; i++) {
         let hour = tasks[i].hour;
         let todo = tasks[i].todo;
@@ -14,13 +15,20 @@ function setUpTasks() {
     }
 }
 
+//funciton to clear the previous day todo list from localStorage
+function setDay(){
+    if (currentDay != dayofWeek){
+    localStorage.clear();
+    }
+}
+
+//Display current day on top of the planner
 function setUp() {
     $("#currentDay").text(currentDay);
     renderTextareaBackground();
 }
 
 // Audit each time block to display past, current and future timeblocks
-
 function renderTextareaBackground() {
     let currentHour = parseInt(moment().format("H"));
 
@@ -28,14 +36,17 @@ function renderTextareaBackground() {
         let id = parseInt($(this).attr("id"));
         if (id < currentHour) {
             $(this).css("background-color", "rgb(208, 208, 225)");
+            // if hour is in the past, disable the save button
+            $(".saveBtn").prop("disabled", true);
         } else if (id === currentHour) {
-            $(this).css("background-color", "rgb(255, 204, 204)");
+            $(this).css("background-color", "rgb(255, 204, 204)");            
         } else {
-            $(this).css("background-color", "rgb(204, 255, 204)");
+            $(this).css("background-color", "rgb(204, 255, 204)");           
         }
     });
 }
 
+//function to save the tasks in local storage
 $(".saveBtn").on('click', function (event) {
 
     event.preventDefault();
@@ -51,24 +62,23 @@ $(".saveBtn").on('click', function (event) {
     if (newTask) {
         addTask(id, plannedTask);
     }
-    //tasks.push(plannedTask);
     localStorage.setItem('myTask', JSON.stringify(tasks));
 });
 
+//function to add new tasks 
 function addTask(hr, input) {
     let todo = {
         hour: hr,
         todo: input
     }
     tasks.push(todo);
-
 }
 
+
 $(document).ready(function () {
+    setDay();
     setUpTasks();
     setUp();
-    setInterval(setUp, 1000);
-    setInterval(renderTextareaBackground, 60 * 1000);
 })
 
 
