@@ -51,5 +51,5 @@ THEN the saved events persist
   ![after hours](assets/images/past_work_day.png)
 
 
-*  The **URL of the GitHub repository** that contains the code: (https://github.com/ciyer87/Javascript-Quiz) 
+*  The **URL of the GitHub repository** that contains the code: (https://github.com/ciyer87/Work-Day-Scheduler) 
 *  The **URL of the deployed application**: ( https://ciyer87.github.io/Work-Day-Scheduler/)
