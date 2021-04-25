@@ -24,3 +24,32 @@ WHEN I click the save button for that time block
 THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
+
+# Technologies used
+
+* HTML
+* CSS
+* Javascript
+
+
+# Screenshots
+
+* Blank Scheduler (no todo list)
+
+  ![no todo list](assets/images/no_todo_list.png)
+  
+* Todo list with past, present and future hours
+
+  ![color varitions](assets/images/todo_color_variation.png)
+  
+* Todo list saved in Local Storage
+
+  ![local storage](assets/images/local_storage.png)
+  
+* After hours todo list
+
+  ![after hours](assets/images/past_work_day.png)
+
+
+*  The **URL of the GitHub repository** that contains the code: (https://github.com/ciyer87/Javascript-Quiz) 
+*  The **URL of the deployed application**: (https://ciyer87.github.io/Javascript-Quiz/)
