@@ -14,17 +14,19 @@
 </head>
 
 <body>
+  <!-- header section start -->
   <header class="jumbotron">
     <h1 class="display-3">Work Day Scheduler</h1>
     <p class="lead">A simple calendar app for scheduling your work day</p>
     <p id="currentDay" class="lead"></p>
   </header>
+  <!-- header section end -->
 
+  <!-- 9am - 5pm calendar for capturing the todo list -->
   <div class="container" id="planner">
 
     <div class="row time-block past">
       <div class="col-md-1 hour">9AM</div>
-
       <textarea class="col-md-10 description " id="9"></textarea>
       <button type="button" class="btn saveBtn col-md-1" data-hour="9">
         <i class="fas fa-save"></i>
@@ -45,7 +47,7 @@
       </button>
     </div>
     <div class="row time-block past">
-      <div class="col-md-1 hour">12AM</div>
+      <div class="col-md-1 hour">12PM</div>
       <textarea class="col-md-10 description" id="12"></textarea>
       <button class="btn saveBtn col-md-1" data-hour="12">
         <i class="fas fa-save"></i>
