@@ -52,4 +52,4 @@ THEN the saved events persist
 
 
 *  The **URL of the GitHub repository** that contains the code: (https://github.com/ciyer87/Javascript-Quiz) 
-*  The **URL of the deployed application**: (https://ciyer87.github.io/Javascript-Quiz/)
+*  The **URL of the deployed application**: ( https://ciyer87.github.io/Work-Day-Scheduler/)
